@@ -1,7 +1,10 @@
 #ifndef LOGIN_H
 #define LOGIN_H
 
+
 #include <QMainWindow>
+#include "secdialog.h"
+
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -20,7 +23,9 @@ public:
 private slots:
     void on_btn_login_clicked();
 
+
 private:
     Ui::login *ui;
+    SecDialog *secDialog;
 };
 #endif // LOGIN_H

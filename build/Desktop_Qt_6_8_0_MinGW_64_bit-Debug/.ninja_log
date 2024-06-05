@@ -1,0 +1,19 @@
+# ninja log v5
+13	352	7392744784780763	qtlogin_autogen/timestamp	a8f19d530d22f365
+13	352	7392744784780763	qtlogin_autogen/mocs_compilation.cpp	a8f19d530d22f365
+13	352	7392744784780763	G:/qtProjects/qtlogin/build/Desktop_Qt_6_8_0_MinGW_64_bit-Debug/qtlogin_autogen/timestamp	a8f19d530d22f365
+1553	1778	7392733704237102	qtlogin.exe	24b8c1784c5be3e7
+13	352	7392744784780763	G:/qtProjects/qtlogin/build/Desktop_Qt_6_8_0_MinGW_64_bit-Debug/qtlogin_autogen/mocs_compilation.cpp	a8f19d530d22f365
+353	1420	7392744795747764	CMakeFiles/qtlogin.dir/qtlogin_autogen/mocs_compilation.cpp.obj	89f874eddab98811
+422	1552	7392733701985728	CMakeFiles/qtlogin.dir/login.cpp.obj	5b931a3ea04a88a0
+352	1396	7392744795480613	CMakeFiles/qtlogin.dir/main.cpp.obj	702a254d755991c9
+355	1476	7392744796278390	CMakeFiles/qtlogin.dir/secdialog.cpp.obj	47a25781d76639f7
+3	316	7392747700081781	qtlogin_autogen/timestamp	a8f19d530d22f365
+3	316	7392747700081781	qtlogin_autogen/mocs_compilation.cpp	a8f19d530d22f365
+3	316	7392747700081781	G:/qtProjects/qtlogin/build/Desktop_Qt_6_8_0_MinGW_64_bit-Debug/qtlogin_autogen/timestamp	a8f19d530d22f365
+3	316	7392747700081781	G:/qtProjects/qtlogin/build/Desktop_Qt_6_8_0_MinGW_64_bit-Debug/qtlogin_autogen/mocs_compilation.cpp	a8f19d530d22f365
+317	1322	7392747710381406	CMakeFiles/qtlogin.dir/qtlogin_autogen/mocs_compilation.cpp.obj	89f874eddab98811
+316	1343	7392747710634583	CMakeFiles/qtlogin.dir/main.cpp.obj	702a254d755991c9
+320	1382	7392747710981319	CMakeFiles/qtlogin.dir/secdialog.cpp.obj	47a25781d76639f7
+319	1448	7392747711681303	CMakeFiles/qtlogin.dir/login.cpp.obj	5b931a3ea04a88a0
+1448	1556	7392747712728896	qtlogin.exe	9e1a7770b6548c7e
