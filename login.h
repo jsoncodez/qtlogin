@@ -4,6 +4,10 @@
 
 #include <QMainWindow>
 #include "secdialog.h"
+#include <QtSql>
+#include <QSqlDatabase>
+#include <QFileInfo>
+#include <QDebug>
 
 
 QT_BEGIN_NAMESPACE
