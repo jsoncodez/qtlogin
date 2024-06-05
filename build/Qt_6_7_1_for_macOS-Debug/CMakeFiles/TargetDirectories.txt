@@ -1,0 +1,9 @@
+/Users/jmac/qtlogin/build/Qt_6_7_1_for_macOS-Debug/CMakeFiles/qtlogin.dir
+/Users/jmac/qtlogin/build/Qt_6_7_1_for_macOS-Debug/CMakeFiles/edit_cache.dir
+/Users/jmac/qtlogin/build/Qt_6_7_1_for_macOS-Debug/CMakeFiles/rebuild_cache.dir
+/Users/jmac/qtlogin/build/Qt_6_7_1_for_macOS-Debug/CMakeFiles/list_install_components.dir
+/Users/jmac/qtlogin/build/Qt_6_7_1_for_macOS-Debug/CMakeFiles/install.dir
+/Users/jmac/qtlogin/build/Qt_6_7_1_for_macOS-Debug/CMakeFiles/install/local.dir
+/Users/jmac/qtlogin/build/Qt_6_7_1_for_macOS-Debug/CMakeFiles/install/strip.dir
+/Users/jmac/qtlogin/build/Qt_6_7_1_for_macOS-Debug/CMakeFiles/qtlogin_autogen_timestamp_deps.dir
+/Users/jmac/qtlogin/build/Qt_6_7_1_for_macOS-Debug/CMakeFiles/qtlogin_autogen.dir
