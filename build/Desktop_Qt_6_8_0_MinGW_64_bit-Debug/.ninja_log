@@ -61,3 +61,12 @@
 11	15	0	clean	577b940aee94fbd7
 0	11	0	CMakeFiles/clean.additional	baedbe210acaa455
 11	16	0	clean	577b940aee94fbd7
+3	793	7393094629831852	qtlogin_autogen/timestamp	a8f19d530d22f365
+3	793	7393094629831852	qtlogin_autogen/mocs_compilation.cpp	a8f19d530d22f365
+3	793	7393094629831852	G:/qtProjects/qtlogin/build/Desktop_Qt_6_8_0_MinGW_64_bit-Debug/qtlogin_autogen/timestamp	a8f19d530d22f365
+3	793	7393094629831852	G:/qtProjects/qtlogin/build/Desktop_Qt_6_8_0_MinGW_64_bit-Debug/qtlogin_autogen/mocs_compilation.cpp	a8f19d530d22f365
+796	1984	7393094642071854	CMakeFiles/qtlogin.dir/secdialog.cpp.obj	7a34448526dba66f
+793	3171	7393094653931856	CMakeFiles/qtlogin.dir/main.cpp.obj	7b1a0ac7fd3537dc
+795	3216	7393094654381853	CMakeFiles/qtlogin.dir/qtlogin_autogen/mocs_compilation.cpp.obj	f96a4a230c8a32c9
+798	3330	7393094655511853	CMakeFiles/qtlogin.dir/login.cpp.obj	c12d21eed33a0ba
+3330	3466	7393094656821852	qtlogin.exe	59b3d90630ada3bd
