@@ -46,7 +46,7 @@
       </rect>
      </property>
     </widget>
-    <widget class="QPushButton" name="LOGIN">
+    <widget class="QPushButton" name="btn_login">
      <property name="geometry">
       <rect>
        <x>120</x>
@@ -70,6 +70,12 @@
      <height>43</height>
     </rect>
    </property>
+   <widget class="QMenu" name="menuLOGIN_WINDOW">
+    <property name="title">
+     <string>LOGIN WINDOW</string>
+    </property>
+   </widget>
+   <addaction name="menuLOGIN_WINDOW"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
