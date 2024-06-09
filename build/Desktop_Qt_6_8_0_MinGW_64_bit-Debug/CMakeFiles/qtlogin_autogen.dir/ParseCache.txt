@@ -323,6 +323,7 @@ G:/qtProjects/qtlogin/login.h
  mdp:C:/Qt/6.8.0/mingw_64/include/QtSql/qtsqlversion.h
  mdp:C:/Qt/6.8.0/mingw_64/include/QtWidgets/QDialog
  mdp:C:/Qt/6.8.0/mingw_64/include/QtWidgets/QMainWindow
+ mdp:C:/Qt/6.8.0/mingw_64/include/QtWidgets/QMessageBox
  mdp:C:/Qt/6.8.0/mingw_64/include/QtWidgets/qabstractitemdelegate.h
  mdp:C:/Qt/6.8.0/mingw_64/include/QtWidgets/qabstractitemview.h
  mdp:C:/Qt/6.8.0/mingw_64/include/QtWidgets/qabstractscrollarea.h
@@ -330,9 +331,11 @@ G:/qtProjects/qtlogin/login.h
  mdp:C:/Qt/6.8.0/mingw_64/include/QtWidgets/qabstractspinbox.h
  mdp:C:/Qt/6.8.0/mingw_64/include/QtWidgets/qcombobox.h
  mdp:C:/Qt/6.8.0/mingw_64/include/QtWidgets/qdialog.h
+ mdp:C:/Qt/6.8.0/mingw_64/include/QtWidgets/qdialogbuttonbox.h
  mdp:C:/Qt/6.8.0/mingw_64/include/QtWidgets/qframe.h
  mdp:C:/Qt/6.8.0/mingw_64/include/QtWidgets/qlistview.h
  mdp:C:/Qt/6.8.0/mingw_64/include/QtWidgets/qmainwindow.h
+ mdp:C:/Qt/6.8.0/mingw_64/include/QtWidgets/qmessagebox.h
  mdp:C:/Qt/6.8.0/mingw_64/include/QtWidgets/qrubberband.h
  mdp:C:/Qt/6.8.0/mingw_64/include/QtWidgets/qsizepolicy.h
  mdp:C:/Qt/6.8.0/mingw_64/include/QtWidgets/qslider.h
@@ -1377,7 +1380,7 @@ G:/qtProjects/qtlogin/secdialog.h
  mdp:G:/qtProjects/qtlogin/build/Desktop_Qt_6_8_0_MinGW_64_bit-Debug/qtlogin_autogen/moc_predefs.h
  mdp:G:/qtProjects/qtlogin/secdialog.h
 G:/qtProjects/qtlogin/login.cpp
- uic:./ui_login.h
+ uic:ui_login.h
 G:/qtProjects/qtlogin/main.cpp
 G:/qtProjects/qtlogin/secdialog.cpp
  uic:ui_secdialog.h
