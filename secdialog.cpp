@@ -137,6 +137,39 @@ void addValues( QString Course_Name, int Course_Credits, QString Course_Grade) {
 
 
 }
+
+void SecDialog::calcGPA() {
+
+    float GPA; //qDebug() << QString::number(1.125, 'f', 2);
+            // qDebug() << QString::number(1.125, 'f', 2);
+            // qDebug() << "Rounding 314.19 to 3 decimal places = " << QString::number(myStr.toDouble(), 'f', 3);
+            // qDebug() << "Rounding 314.1945327743682 to 6 decimal places = " << QString::number(myStr.toDouble(), 'f',dec_pl);
+    std::vector<int> eachQPI;
+    int qpiSum;
+    int creditsSum = 0;
+    int currentCredit = 0;
+
+    QSqlQueryModel gradeQry;
+    gradeQry.setQuery("select * from coursesTable");
+    m_mydb.open();
+    // QSqlTableModel gradeModel;
+
+    // gradeModel.setTable("courseTable");
+
+
+    // QSqlQueryModel gradeQry;
+    // gradeQry.setQuery("SELECT * FROM courseTable");
+
+    for (int i = 0; i < gradeQry.rowCount(); i++) {
+        currentCredit = gradeQry.record(i).value("Course_Credits").toInt();
+        creditsSum += gradeQry.record(i).value("Course_Credits").toInt();
+        qDebug() << "CREDITS.....= " << currentCredit;
+    }
+    qDebug() << "CREDITS SUM = " << creditsSum;
+
+
+}
+
 void SecDialog::on_pushButton_add_clicked()
 {
     QString className, classGrade;
@@ -157,6 +190,7 @@ void SecDialog::on_pushButton_add_clicked()
 
     ui->tableView_classList->setModel(modal);
 
+    calcGPA();
 
 }
 

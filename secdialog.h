@@ -6,6 +6,7 @@
 #include <QSqlDatabase>
 #include <QFileInfo>
 #include <QDebug>
+#include <vector>
 // #include "login.h"
 
 
@@ -14,6 +15,7 @@ namespace Ui {
 class SecDialog;
 
     void addValues( QString Course_Name, int Course_Credits, QString Course_Grade);
+
 
 
 }
@@ -31,6 +33,8 @@ public:
     ~SecDialog();
     void connClose();
     bool connOpen();
+
+    void calcGPA();
 
 
 
