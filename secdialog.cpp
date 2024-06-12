@@ -9,22 +9,46 @@ SecDialog::SecDialog(QWidget *parent)
     ui->setupUi(this);
 
 
-    connOpen();
+    // connOpen();
     // m_mydb->open();
+
+    QDir databasePath;
+    QString dbpath = databasePath.currentPath()+"/mydb.db";
+
+    // QSqlDatabase mydb = QSqlDatabase::addDatabase("QSQLITE");
+    // mydb.setDatabaseName(dbpath);
+    // mydb.open();
+
+
+    m_mydb = QSqlDatabase::addDatabase("QSQLITE");
+    m_mydb.setDatabaseName(dbpath);
+    m_mydb.open();
+
+
+
+    QString query = "CREATE TABLE IF NOT EXISTS coursesTable ("
+                  "Course_Name VARCHAR(20), "
+                  "Course_Credits integer, "
+                  "Course_Grade VARCHAR(1));";
+
 
     QSqlQuery qry;
 
-
-    qry.exec("CREATE TABLE courses, "
-                "Course_Name varchar(20), "
-                "Course_Credits integer, "
-                "Course_Grade varchar(1)");
-
-    if(!qry.exec()) {
-        qDebug() << "Sec Dialog Widget Class = " << qry.lastError();
-    } else {
-        qDebug() << "Table Created";
+    if (!qry.exec(query)) {
+        qDebug() << "error creating table";
     }
+
+
+    // qry.exec("CREATE TABLE courses, "
+    //             "Course_Name varchar(20), "
+    //             "Course_Credits integer, "
+    //             "Course_Grade varchar(1)");
+
+    // if(!qry.exec()) {
+    //     qDebug() << "Sec Dialog Widget Class = " << qry.lastError();
+    // } else {
+    //     qDebug() << "Table Created";
+    // }
 
 
     // QSqlQuery m_mydb("CREATE TABLE courses "
@@ -110,6 +134,8 @@ void addValues( QString Course_Name, int Course_Credits, QString Course_Grade) {
     if(!qry.exec()) {
         qDebug() <<"error adding values to db";
     }
+
+
 }
 void SecDialog::on_pushButton_add_clicked()
 {
@@ -123,6 +149,15 @@ void SecDialog::on_pushButton_add_clicked()
 
     addValues(className, classCredits, classGrade);
 
+
+        //POST to table
+    QSqlQueryModel * modal = new QSqlQueryModel();
+    modal->setQuery("select * from coursesTable");
+    m_mydb.open();
+
+    ui->tableView_classList->setModel(modal);
+
+
 }
 
 
@@ -132,11 +167,34 @@ void SecDialog::on_pushButton_exit_clicked()
 }
 
 
-void SecDialog::on_pushButton_clicked()
+void SecDialog::on_pushButton_load_clicked()
 {
+    QSqlQueryModel * modal = new QSqlQueryModel();
+    modal->setQuery("select * from coursesTable");
+    m_mydb.open();
+    // QTableView *view = new QTableView;
+    ui->tableView_classList->setModel(modal);
 
+    // view->tableView_classList->setModel(modal);
+
+    // view->show();
+
+
+
+    // QSqlQueryModel * modal = new QSqlQueryModel();
+
+    // m_mydb.open();
+
+    // QSqlQuery* qry = new QSqlQuery(m_mydb);
+    // qry->prepare("select * from coursesTable");
+    // qry->exec();
+    // modal->setQuery(*qry);
+    // ui->tableView_classList->setModel(modal);
 }
+
+
 QSqlDatabase mydb;
+
 
 void SecDialog::connClose() {
     mydb.close();
@@ -246,5 +304,7 @@ bool SecDialog::connOpen() {
     //     return false;
     // }
 }
+
+
 
 

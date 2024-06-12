@@ -13,7 +13,7 @@ namespace Ui {
 
 class SecDialog;
 
-void addValues( QString Course_Name, int Course_Credits, QString Course_Grade);
+    void addValues( QString Course_Name, int Course_Credits, QString Course_Grade);
 
 
 }
@@ -39,11 +39,12 @@ private slots:
 
     void on_pushButton_exit_clicked();
 
-    void on_pushButton_clicked();
+    void on_pushButton_load_clicked();
 
 private:
     Ui::SecDialog *ui;
-    QSqlDatabase *m_mydb;
+    // QSqlDatabase *m_mydb;
+    QSqlDatabase m_mydb;
     QString m_dbpath;
 
 };
