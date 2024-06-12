@@ -50,6 +50,9 @@ private:
     // QSqlDatabase *m_mydb;
     QSqlDatabase m_mydb;
     QString m_dbpath;
+    int m_qpiSum = 0;
+    int m_creditsSum = 0;
+    float m_GPA = 0;
 
 };
 

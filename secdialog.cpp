@@ -7,8 +7,6 @@ SecDialog::SecDialog(QWidget *parent)
     , ui(new Ui::SecDialog)
 {
     ui->setupUi(this);
-
-
     // connOpen();
     // m_mydb->open();
 
@@ -145,10 +143,14 @@ void SecDialog::calcGPA() {
             // qDebug() << "Rounding 314.19 to 3 decimal places = " << QString::number(myStr.toDouble(), 'f', 3);
             // qDebug() << "Rounding 314.1945327743682 to 6 decimal places = " << QString::number(myStr.toDouble(), 'f',dec_pl);
     std::vector<int> eachQPI;
-    int qpiSum;
+
+    int qpiSum = 0;
     int creditsSum = 0;
     int currentCredit = 0;
 
+    m_qpiSum = 0;
+    m_creditsSum = 0;
+    // QString sGPA = "";
     QSqlQueryModel gradeQry;
     gradeQry.setQuery("select * from coursesTable");
     m_mydb.open();
@@ -162,11 +164,40 @@ void SecDialog::calcGPA() {
 
     for (int i = 0; i < gradeQry.rowCount(); i++) {
         currentCredit = gradeQry.record(i).value("Course_Credits").toInt();
-        creditsSum += gradeQry.record(i).value("Course_Credits").toInt();
+        m_creditsSum += gradeQry.record(i).value("Course_Credits").toInt();
         qDebug() << "CREDITS.....= " << currentCredit;
-    }
-    qDebug() << "CREDITS SUM = " << creditsSum;
+        QString tempStrGrade = gradeQry.record(i).value("Course_Grade").toString();
+        int tempIntGrade = 0;
+        if (tempStrGrade == "A") {
+            tempIntGrade = 4;
 
+        } else if (tempStrGrade == "B") {
+            tempIntGrade = 3;
+        } else if (tempStrGrade == "C") {
+            tempIntGrade = 2;
+        } else if (tempStrGrade == "D") {
+            tempIntGrade = 1;
+        } else if (tempStrGrade == "F") {
+            tempIntGrade = 0;
+        } else {
+            //create a highlighting function to highlight row where there is an incorrect input
+            qDebug() << "INCORRECT INPUT, PLEASE REVIEW AND CORRECT";
+        }
+        qDebug() << "TEMP STR GRADE = " << tempStrGrade;
+        qDebug() << "TEMP INT GRADE = " << tempIntGrade;
+        m_qpiSum += (tempIntGrade * currentCredit);
+
+
+
+    }
+
+    m_GPA= float(m_qpiSum)/float(m_creditsSum);
+
+    QString sGPA = QString::number(m_GPA, 'f' , 2);
+    ui->label_GPA->setText(sGPA);
+    qDebug() << "QPI SUM .....= " << m_qpiSum;
+    qDebug() << "CREDITS SUM = " << m_creditsSum;
+    qDebug() << "GPA.......................... = " << m_GPA;
 
 }
 
@@ -243,8 +274,6 @@ bool SecDialog::connOpen() {
     m_dbpath = dbpath;
 
 
-
-
     QSqlDatabase mydb = QSqlDatabase::addDatabase("QSQLITE");
     mydb.setDatabaseName(dbpath);
 
@@ -265,10 +294,6 @@ bool SecDialog::connOpen() {
         // } else {
         //     qDebug() << "Table Created";
         // }
-
-
-
-
 
         // QMessageBox::information(this, "Connection", "Database Connected Successfully");
 
