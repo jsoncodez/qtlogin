@@ -1,11 +1,13 @@
 G:/qtProjects/qtlogin/build/Desktop_Qt_6_8_0_MinGW_64_bit-Debug/qtlogin_autogen/EWIEGA46WW/moc_secdialog.cpp: G:/qtProjects/qtlogin/secdialog.h \
   G:/qtProjects/qtlogin/build/Desktop_Qt_6_8_0_MinGW_64_bit-Debug/qtlogin_autogen/moc_predefs.h \
+  C:/Qt/6.8.0/mingw_64/include/QtCore/QAbstractItemModel \
   C:/Qt/6.8.0/mingw_64/include/QtCore/QDeadlineTimer \
   C:/Qt/6.8.0/mingw_64/include/QtCore/QDebug \
   C:/Qt/6.8.0/mingw_64/include/QtCore/QFileInfo \
   C:/Qt/6.8.0/mingw_64/include/QtCore/QHash \
   C:/Qt/6.8.0/mingw_64/include/QtCore/QList \
   C:/Qt/6.8.0/mingw_64/include/QtCore/QMap \
+  C:/Qt/6.8.0/mingw_64/include/QtCore/QModelIndex \
   C:/Qt/6.8.0/mingw_64/include/QtCore/QMutex \
   C:/Qt/6.8.0/mingw_64/include/QtCore/QObject \
   C:/Qt/6.8.0/mingw_64/include/QtCore/QString \
@@ -301,6 +303,8 @@ G:/qtProjects/qtlogin/build/Desktop_Qt_6_8_0_MinGW_64_bit-Debug/qtlogin_autogen/
   C:/Qt/6.8.0/mingw_64/include/QtGui/qwindowdefs.h \
   C:/Qt/6.8.0/mingw_64/include/QtGui/qwindowdefs_win.h \
   C:/Qt/6.8.0/mingw_64/include/QtSql/QSqlDatabase \
+  C:/Qt/6.8.0/mingw_64/include/QtSql/QSqlQueryModel \
+  C:/Qt/6.8.0/mingw_64/include/QtSql/QSqlTableModel \
   C:/Qt/6.8.0/mingw_64/include/QtSql/QtSql \
   C:/Qt/6.8.0/mingw_64/include/QtSql/QtSqlDepends \
   C:/Qt/6.8.0/mingw_64/include/QtSql/qsqldatabase.h \

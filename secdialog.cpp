@@ -22,8 +22,6 @@ SecDialog::SecDialog(QWidget *parent)
     m_mydb.setDatabaseName(dbpath);
     m_mydb.open();
 
-
-
     QString query = "CREATE TABLE IF NOT EXISTS coursesTable ("
                   "Course_Name VARCHAR(20), "
                   "Course_Credits integer, "
@@ -31,83 +29,16 @@ SecDialog::SecDialog(QWidget *parent)
 
 
     QSqlQuery qry;
-
+    
+    
+    ui->tableView_classList->setSelectionBehavior(QAbstractItemView::SelectRows);
+    
     if (!qry.exec(query)) {
         qDebug() << "error creating table";
     }
+    
+    m_mydb.close();
 
-
-    // qry.exec("CREATE TABLE courses, "
-    //             "Course_Name varchar(20), "
-    //             "Course_Credits integer, "
-    //             "Course_Grade varchar(1)");
-
-    // if(!qry.exec()) {
-    //     qDebug() << "Sec Dialog Widget Class = " << qry.lastError();
-    // } else {
-    //     qDebug() << "Table Created";
-    // }
-
-
-    // QSqlQuery m_mydb("CREATE TABLE courses "
-    //                  "Course_Name varchar(20), "
-    //                  "Course_Credits integer, "
-    //                  "Course_Grade varchar(1)");
-
-    // QSqlQuery query;
-
-    // query.prepare("CREATE TABLE IF NOT EXISTS courses "
-    //                  "Course_Name varchar(20), "
-    //                  "Course_Credits integer, "
-    //                  "Course_Grade varchar(1)");
-
-
-
-    // QSqlQuery query("CREATE TABLE courses "
-    //                 "Course_Name varchar(20), "
-    //                 "Course_Credits integer, "
-    //                 "Course_Grade varchar(1)");
-
-
-
-    // QSqlQuery query;
-    // QSqlQueryModel * modal = new QSqlQueryModel();
-
-    // QSqlQuery* qry = new QSqlQuery();
-
-
-
-    // connOpen();
-
-    // QDir databasePath;
-    // QString dbpath = databasePath.currentPath()+"/mydb.db";
-    // QSqlDatabase mydb = QSqlDatabase::addDatabase("QSQLITE");
-    // mydb.setDatabaseName(dbpath);
-
-    // if (mydb.open()) {
-    //     QMessageBox::information(this, "Connection", "Database Connected Successfully");
-
-    //     QString query = "CREATE TABLE IF NOT EXISTS coursesTable ("
-    //                   "Course_Name VARCHAR(20), "
-    //                   "Course_Credits integer, "
-    //                   "Course_Grade VARCHAR(1));";
-
-    //     QSqlQuery qry;
-    //     // query.prepare("CREATE TABLE IF NOT EXISTS data (id int not null primary key, tu text, data BLOB, puits integer);");
-
-    //     if (!qry.exec(query)) {
-    //         qDebug()<<"Error creating table";
-    //     }
-
-    //     // addValues("Math", 4, "A");
-
-
-    //     qDebug()<<"end";
-
-
-    // } else {
-    //     QMessageBox::information(this, "Connection", "Database FAILED");
-    // }
 }
 
 SecDialog::~SecDialog()
@@ -198,6 +129,7 @@ void SecDialog::calcGPA() {
     qDebug() << "QPI SUM .....= " << m_qpiSum;
     qDebug() << "CREDITS SUM = " << m_creditsSum;
     qDebug() << "GPA.......................... = " << m_GPA;
+    m_mydb.close();
 
 }
 
@@ -226,9 +158,72 @@ void SecDialog::on_pushButton_add_clicked()
 }
 
 
+void SecDialog::on_tableView_classList_activated(const QModelIndex &index)
+{
+    QString val=ui->tableView_classList->model()->data(index).toString();
+    
+
+    
+    QSqlQuery qry;
+    m_mydb.open();
+    qry.prepare("SELECT * FROM coursesTable WHERE Course_Name='"+val+"' OR Course_Credits='"+val+"' OR Course_Grade='"+val+"'");
+    
+    
+    if(qry.exec()) {
+        while(qry.next()) {
+            ui->lineEdit_className->setText(qry.value(0).toString());
+            ui->lineEdit_classCredits->setText(qry.value(1).toString());
+            ui->lineEdit_classGrade->setText(qry.value(2).toString());
+            
+        }
+        m_mydb.close();
+    } else {
+        QMessageBox::critical(this, tr("error::"), qry.lastError().text());
+    }
+    
+    qDebug() << "INDEX .....= " << index;
+    // qDebug() << "&INDEX .....= " << &index;
+    qDebug() << "INDEX.row() .....= " << index.row();
+    
+    m_currentSelection = index;
+    
+    qDebug() << "m_currentSelection .....= " << m_currentSelection;
+
+}
+
 void SecDialog::on_pushButton_exit_clicked()
 {
     // login::connClose();
+}
+
+
+void SecDialog::on_pushButton_delete_clicked()
+{
+    int selectedRow = ui->tableView_classList->selectionModel()->currentIndex().row();
+    
+
+    qDebug() << "SELECTED ROW DELETE CLICKED = " << selectedRow;
+
+    ui->tableView_classList->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->tableView_classList->setSelectionMode(QAbstractItemView::SingleSelection);
+    
+    
+    m_mydb.open();
+    
+    QSqlTableModel modal;
+    modal.setTable("coursesTable");
+    
+    
+
+    modal.select();
+    
+    modal.removeRow(selectedRow);
+    
+    modal.submitAll();
+    calcGPA();
+    
+
+
 }
 
 
@@ -240,21 +235,8 @@ void SecDialog::on_pushButton_load_clicked()
     // QTableView *view = new QTableView;
     ui->tableView_classList->setModel(modal);
 
-    // view->tableView_classList->setModel(modal);
-
-    // view->show();
-
-
-
-    // QSqlQueryModel * modal = new QSqlQueryModel();
-
-    // m_mydb.open();
-
-    // QSqlQuery* qry = new QSqlQuery(m_mydb);
-    // qry->prepare("select * from coursesTable");
-    // qry->exec();
-    // modal->setQuery(*qry);
-    // ui->tableView_classList->setModel(modal);
+    m_mydb.close();
+    calcGPA();
 }
 
 
@@ -281,40 +263,7 @@ bool SecDialog::connOpen() {
     // m_mydb.open();
 
     if (mydb.open()) {
-        // QSqlQuery qry;
-
-
-        // qry.prepare("CREATE TABLE IF NOT EXISTS courses, "
-        //               "Course_Name varchar(20), "
-        //               "Course_Credits integer, "
-        //               "Course_Grade varchar(1)");
-
-        // if(!qry.exec()) {
-        //     qDebug() << qry.lastError();
-        // } else {
-        //     qDebug() << "Table Created";
-        // }
-
-        // QMessageBox::information(this, "Connection", "Database Connected Successfully");
-
-        // QString query = "CREATE TABLE IF NOT EXISTS coursesTable ("
-        //                 "Course_Name VARCHAR(20), "
-        //                 "Course_Credits integer, "
-        //                 "Course_Grade VARCHAR(1));";
-
-        // QSqlQuery qry;
-        // query.exec("create table courses "
-        //            "Course_Name varchar(20), "
-        //            "Course_Credits integer, "
-        //            "Course_Grade varchar(1)");
-        // QSqlQuery query("mydb");
-        // query.prepare("CREATE TABLE IF NOT EXISTS data (id int not null primary key, tu text, data BLOB, puits integer);");
-
-        // if (!qry.exec(query)) {
-        //     qDebug()<<"Error creating table";
-        // }
-
-
+ 
 
         qDebug()<<"end";
         return true;
@@ -325,44 +274,13 @@ bool SecDialog::connOpen() {
         return false;
     }
 
-    // QDir databasePath;
-    // QString dbpath = databasePath.currentPath()+"/mydb.db";
-    // QSqlDatabase mydb = QSqlDatabase::addDatabase("QSQLITE");
 
-
-
-    // mydb.setDatabaseName(dbpath);
-    // mydb.open();
-
-    // if (mydb.open()) {
-    //     // QMessageBox::information(this, "Connection", "Database Connected Successfully");
-
-    //     QString query = "CREATE TABLE IF NOT EXISTS coursesTable ("
-    //                     "Course_Name VARCHAR(20), "
-    //                     "Course_Credits integer, "
-    //                     "Course_Grade VARCHAR(1));";
-
-    //     QSqlQuery qry;
-    //     // query.exec("create table courses "
-    //     //            "Course_Name varchar(20), "
-    //     //            "Course_Credits integer, "
-    //     //            "Course_Grade varchar(1)");
-    //     // QSqlQuery query("mydb");
-    //     // query.prepare("CREATE TABLE IF NOT EXISTS data (id int not null primary key, tu text, data BLOB, puits integer);");
-
-    //     if (!qry.exec(query)) {
-    //         qDebug()<<"Error creating table";
-    //     }
-
-    //     qDebug()<<"end";
-    //     return true;
-
-
-    // } else {
-    //     // QMessageBox::information(this, "Connection", "Database FAILED");
-    //     return false;
-    // }
 }
+
+
+
+
+
 
 
 

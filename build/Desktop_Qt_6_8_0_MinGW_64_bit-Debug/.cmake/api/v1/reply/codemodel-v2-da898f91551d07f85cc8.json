@@ -44,7 +44,7 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "qtlogin::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-qtlogin-Debug-8eca4d913355b06efdee.json",
+					"jsonFile" : "target-qtlogin-Debug-8cb1d49568e5ba98935b.json",
 					"name" : "qtlogin",
 					"projectIndex" : 0
 				},
@@ -58,7 +58,7 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "qtlogin_autogen_timestamp_deps::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-qtlogin_autogen_timestamp_deps-Debug-23c61025b948b8cc1f15.json",
+					"jsonFile" : "target-qtlogin_autogen_timestamp_deps-Debug-99c594c3c65726f32e53.json",
 					"name" : "qtlogin_autogen_timestamp_deps",
 					"projectIndex" : 0
 				}
@@ -74,6 +74,6 @@
 	"version" : 
 	{
 		"major" : 2,
-		"minor" : 6
+		"minor" : 7
 	}
 }

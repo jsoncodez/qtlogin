@@ -28,8 +28,6 @@ class login : public QMainWindow
     Q_OBJECT
 
 
-
-
 public:
     login(QWidget *parent = nullptr);
     ~login();
