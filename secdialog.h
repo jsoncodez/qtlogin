@@ -50,6 +50,7 @@ public:
     bool connOpen();
     
     void calcGPA();
+    void addValues2(QString, int, QString);
     
     
 private slots:

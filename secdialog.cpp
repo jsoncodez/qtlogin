@@ -21,6 +21,20 @@ SecDialog::SecDialog(QWidget *parent)
     m_mydb = QSqlDatabase::addDatabase("QSQLITE");
     m_mydb.setDatabaseName(dbpath);
     m_mydb.open();
+    
+    QSqlTableModel *modal = new QSqlTableModel;
+    modal->setTable("coursesTable");
+    
+    
+    modal->setEditStrategy(QSqlTableModel::OnManualSubmit);
+    modal->select();
+    
+    QTableView *view = ui->tableView_classList;
+    // QTableView *view = new QTableView;
+    view->setModel(modal);
+    // view->hideColumn(0); // don't show the ID
+    view->show();
+    
 
     QString query = "CREATE TABLE IF NOT EXISTS coursesTable ("
                   "Course_Name VARCHAR(20), "
@@ -47,7 +61,48 @@ SecDialog::~SecDialog()
     delete ui;
 }
 
+void SecDialog::addValues2( QString Course_Name, int Course_Credits, QString Course_Grade) {
+    // QSqlTableModel *modal = new QSqlTableModel();
+    // m_mydb.open();
+    
+    m_mydb.open();
+    QSqlTableModel *modal = new QSqlTableModel;
+    modal->setTable("coursesTable");
+    
+    
+    modal->setEditStrategy(QSqlTableModel::OnManualSubmit);
+    modal->select();
+    
+    
+    
+    const int row = modal->rowCount();
+    modal->insertRows(row, 1);
+    modal->setData(modal->index(row,0), Course_Name);
+    modal->setData(modal->index(row,1), Course_Credits);
+    modal->setData(modal->index(row,2), Course_Grade);
+    
+    modal->submitAll();
+    
+    
+    QTableView *view = ui->tableView_classList;
+    // QTableView *view = new QTableView;
+    view->setModel(modal);
+    // view->hideColumn(0); // don't show the ID
+    view->show();
+    
+
+    
+
+   
+    
+    // ui->tableView_classList->setModel(modal);
+    
+    
+
+}
+
 void addValues( QString Course_Name, int Course_Credits, QString Course_Grade) {
+    
 
     QSqlQuery qry;
     qry.prepare("INSERT INTO coursesTable ("
@@ -141,17 +196,19 @@ void SecDialog::on_pushButton_add_clicked()
     className=ui->lineEdit_className->text();
     classCredits=ui->lineEdit_classCredits->text().toInt();
     classGrade=ui->lineEdit_classGrade->text();
+    
+    addValues2(className, classCredits, classGrade);
+    
+    
+    /*// addValues(className, classCredits, classGrade);
 
 
-    addValues(className, classCredits, classGrade);
+    //     //POST to table
+    // QSqlQueryModel * modal = new QSqlQueryModel();
+    // modal->setQuery("select * from coursesTable");
+    // m_mydb.open();
 
-
-        //POST to table
-    QSqlQueryModel * modal = new QSqlQueryModel();
-    modal->setQuery("select * from coursesTable");
-    m_mydb.open();
-
-    ui->tableView_classList->setModel(modal);
+    // ui->tableView_classList->setModel(modal);*/
 
     calcGPA();
 
@@ -193,35 +250,69 @@ void SecDialog::on_tableView_classList_activated(const QModelIndex &index)
 
 void SecDialog::on_pushButton_exit_clicked()
 {
+    this->close();
     // login::connClose();
 }
 
 
 void SecDialog::on_pushButton_delete_clicked()
 {
-    int selectedRow = ui->tableView_classList->selectionModel()->currentIndex().row();
+  /*//   int selectedRow = ui->tableView_classList->selectionModel()->currentIndex().row();
     
 
-    qDebug() << "SELECTED ROW DELETE CLICKED = " << selectedRow;
+  //   qDebug() << "SELECTED ROW DELETE CLICKED = " << selectedRow;
 
+  //   ui->tableView_classList->setSelectionBehavior(QAbstractItemView::SelectRows);
+  //   ui->tableView_classList->setSelectionMode(QAbstractItemView::SingleSelection);
+    
+    
+  //   m_mydb.open();
+    
+  //   QSqlTableModel modal;
+    
+  //   modal.setTable("coursesTable");
+    
+    
+    
+  //   modal.select();
+    
+  //   modal.removeRow(selectedRow);
+    
+  //   modal.submitAll();
+  
+  //   calcGPA(); */
+    
+    
+    
+    
+    int selectedRow = ui->tableView_classList->selectionModel()->currentIndex().row();
+    
     ui->tableView_classList->setSelectionBehavior(QAbstractItemView::SelectRows);
     ui->tableView_classList->setSelectionMode(QAbstractItemView::SingleSelection);
     
-    
     m_mydb.open();
     
-    QSqlTableModel modal;
-    modal.setTable("coursesTable");
+    QSqlTableModel *modal = new QSqlTableModel;
     
     
-
-    modal.select();
+    modal->setTable("coursesTable");
     
-    modal.removeRow(selectedRow);
     
-    modal.submitAll();
+    modal->setEditStrategy(QSqlTableModel::OnManualSubmit);
+    modal->select();
+    
+    modal->removeRow(selectedRow);
+    
+    modal->submitAll();
+    
+    QTableView *view = ui->tableView_classList;
+    // QTableView *view = new QTableView;
+    view->setModel(modal);
+    // view->hideColumn(0); // don't show the ID
+    
+    view->show();
+    
     calcGPA();
-    
 
 
 }
