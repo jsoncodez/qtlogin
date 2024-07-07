@@ -144,7 +144,7 @@ void SecDialog::calcGPA() {
 
     // gradeModel.setTable("courseTable");
 
-
+ 
     // QSqlQueryModel gradeQry;
     // gradeQry.setQuery("SELECT * FROM courseTable");
 

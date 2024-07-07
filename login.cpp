@@ -9,7 +9,7 @@ login::login(QWidget *parent)
 {
     ui->setupUi(this);
 
-    // QDir databasePath;
+    /*// QDir databasePath;
     // QString dbpath = databasePath.currentPath()+"/mydb.db";
 
     // QSqlDatabase mydb = QSqlDatabase::addDatabase("QSQLITE");
@@ -27,7 +27,7 @@ login::login(QWidget *parent)
     // query.exec("CREATE TABLE courses "
     //            "Course_Name varchar(20), "
     //            "Course_Credits integer, "
-    //            "Course_Grade varchar(1)");
+    //            "Course_Grade varchar(1)");*/
 
 }
 
@@ -78,7 +78,7 @@ void login::on_btn_login_clicked()
 
 
 
-        // if (mydb.open()) {
+        /*// if (mydb.open()) {
         //     QMessageBox::information(this, "Connection", "Database Connected Successfully");
         //     QSqlQuery query("mydb");
         //     // query.prepare("CREATE TABLE IF NOT EXISTS data (id int not null primary key, tu text, data BLOB, puits integer);");
@@ -89,7 +89,7 @@ void login::on_btn_login_clicked()
         //                "Course_Grade varchar(1)");
         // } else {
         //     QMessageBox::information(this, "Connection", "Database FAILED");
-        // }
+        // }*/
 
     } else {
         // QMessageBox::warning(this, "Login", "Username and password combo not correct");
